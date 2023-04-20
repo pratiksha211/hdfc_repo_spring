@@ -1,0 +1,21 @@
+create database movieDB;
+
+use movieDB;
+
+CREATE TABLE Movies(movie_id int primary key, movie_title varchar(200), genre varchar(30), director varchar(50) , duration int , rating float );
+
+CREATE TABLE Theatres( theatre_id int primary key ,theatre_name varchar(200),location varchar(50) , seating_capacity int);
+
+CREATE TABLE Shows (show_id int primary key, theatre_id int, movie_id int, show_date date, show_time time, available_seats int, foreign key (theatre_id) references Theatres(theatre_id), foreign key (movie_id) references Movies(movie_id));
+
+CREATE TABLE Customers(customer_id int NOT NULL primary key , customer_name varchar(50) , phone_no int);
+
+CREATE TABLE Bookings(booking_id int primary key, customer_id int NOT NULL, show_id int, booking_date date, total_amount float ,payment_method varchar(50),FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),foreign key (show_id) references Shows(show_id));
+
+INSERT INTO Movies (movie_id, movie_title, genre, director, duration, rating) VALUES(1, ' Black Friday', 'Thriller', 'Anurag Kashyap', 142, 8.3),(2, 'The Kashmir Files', 'Drama', ' Madhavan', 170, 8.8),(3, 'Drishyam 2', 'Crime, Drama', 'Abhishek Pathak', 140, 8.2),(4, ' Black Panther: Wakanda Forever ', ' Action, Adventure, Drama', 'Ryan Coogler ', 161, 6.7),(5, 'The Shawshank Redemption  ', 'Drama', 'Frank Darabont', 142, 9.3),(6, 'Harry Potter and the Sorcerer's Stone', 'Adventure', 'Chris Columbus', 195, 7.6),(7, 'The Lord of the Rings: The Return of the King', 'Adventure, Drama, Fantasy', 'Peter Jackson', 201, 8.9),(8, 'Rogue One: A Star Wars Story', ' Action, Adventure, Sci-Fi', ' Gareth Edwards', 133, 7.8),(9, 'The Good, the Bad and the Ugly', 'Western', 'Sergio Leone', 178, 8.8),(10, 'Fight Club', 'Drama', 'David Fincher', 139, 8.8);
+
+
+INSERT INTO Theatres (theatre_id, theatre_name, location, seating_capacity) VALUES(1, 'PVR Cinema', 'Mumbai', 900),(2, 'Casino Cinema', 'Chennai', 850),(3, 'Central Plaza Cinema', 'Pune', 900),(4, 'Cineplex Cinemas ', 'Toronto', 1000),(5, 'Vox Cinemas', 'Dubai', 1200),(6, 'CGV Cinemas Suwon', 'Suwon', 800),(7, 'Cinépolis Diana', 'Mexico City', 1150),(8, 'INOX', 'Bangalore', 1200),(9, 'Carnival Cinemas', 'Navi Mumbai', 1180),(10, 'Cinema City', 'London', 1300);
+
+INSERT INTO Shows (show_id, theatre_id, movie_id, show_date, show_time, available_seats) VALUES
+(1, 1, 1, '2023-04-02', '13:00', 800),(2, 2, 2, '2023-04-03', '14:30', 700),(3, 3, 3, '2023-04-04', '19:00', 850),(4, 4, 4, '2023-04-05', '18:00', 900),(5, 5, 5, '2023-04-06', '20:00', 1200),(6, 6, 6, '2023-04-07', '15:30', 500),(7, 7, 7, '2023-04-08', '21:00', 950),(8, 8, 8, '2023-04-09', '16:30', 1100),(9, 9, 9, '2023-04-10', '17:00', 1400),(10, 10, 10, '2023-04-11', '14:00', 600);
